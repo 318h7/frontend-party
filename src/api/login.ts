@@ -1,11 +1,18 @@
-// import axios from 'axios';
+import endpoints from 'constants/endpoints';
 
-// import endpoints from 'constants/endpoints';
+import axios from './axios';
 
-// const username = process.env.LOGIN;
-// const password = process.env.PASSWORD;
+const username = process.env.LOGIN;
+const password = process.env.PASSWORD;
 
-export default () => {}; // axios.post(endpoints.login, {
-//   username,
-//   password,
-// })
+interface Response {
+  token: string,
+}
+
+export default () => axios.post<Response>(
+  endpoints.login,
+  {
+    username,
+    password,
+  },
+);

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Root from 'components/root';
+import App from 'components/App';
 
 if (document) {
   ReactDOM.render(
-    <Root />,
+    <App />,
     document.getElementById('root'),
   );
 }

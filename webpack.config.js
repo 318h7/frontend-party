@@ -56,6 +56,7 @@ module.exports = {
   devServer: {
     contentBase: paths.dist,
     compress: true,
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -76,6 +77,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: paths.dist,
+    publicPath: '/',
   },
   plugins,
   optimization: {

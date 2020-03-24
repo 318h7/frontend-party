@@ -18,6 +18,7 @@
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
     "import/extensions": ["error", "ignorePackages", {
       "js": "never",
       "mjs": "never",
