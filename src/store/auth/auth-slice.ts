@@ -1,29 +1,66 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import loginRequest from 'api/login';
+import loginRequest, { Credentials } from 'api/login';
 import { clearToken, storeToken } from 'utils/session-storage';
+import { AppThunk } from 'store/store';
 
-export type SliceState = {
+export type AuthState = {
   loading: boolean,
   error?: string,
 };
 
-const todosSlice = createSlice({
+interface AuthResponse {
+  token: string,
+}
+
+interface AuthError {
+  message: string,
+}
+
+const initialState: AuthState = {
+  loading: false,
+};
+
+const authSlice = createSlice({
   name: 'auth',
-  initialState: { loading: false } as SliceState,
+  initialState,
   reducers: {
-    login() {
-      loginRequest().then(
-        ({ data: { token } }) => {
-          storeToken(token);
-        },
-      );
+    setLoading(state: AuthState) {
+      state.loading = true;
     },
-    logout() {
-      clearToken();
+    loginSuccess(state: AuthState, { payload }: PayloadAction<AuthResponse>) {
+      const { token } = payload;
+      state.loading = false;
+      state.error = undefined;
+      storeToken(token);
+    },
+    loginFailed(state: AuthState, { payload }: PayloadAction<AuthError>) {
+      state.loading = false;
+      state.error = payload.message;
     },
   },
 });
 
-export const { login, logout } = todosSlice.actions;
-export default todosSlice.reducer;
+export const {
+  setLoading,
+  loginSuccess,
+  loginFailed,
+} = authSlice.actions;
+
+export default authSlice.reducer;
+
+export const login = (
+  credentials: Credentials,
+): AppThunk => async (dispatch) => {
+  try {
+    dispatch(setLoading());
+    const { data } = await loginRequest(credentials);
+    dispatch(loginSuccess(data));
+  } catch ({ response: { data } }) {
+    dispatch(loginFailed(data));
+  }
+};
+
+export const logout = (): AppThunk => async () => {
+  clearToken();
+};

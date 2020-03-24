@@ -20,11 +20,15 @@ To run the production bundle size analyzer:
 
 ## Chosen Stack
 
-Bundler: Wrbpack,
-
+Bundler: Webpack,
 State: Redux + Redux Toolkit + Thunk
 REST: Axios
 Validation: yup
 Form Management: Formik
 Styles: Styled components
 Tests: react-testing-library
+
+
+## TODO
+Request state - isLoading
+Forms

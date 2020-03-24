@@ -8,6 +8,7 @@ import {
 
 import store from 'store/store';
 import paths from 'constants/paths';
+import Dummy from 'components/Dummy';
 
 function Home() {
   return <h2>Home</h2>;
@@ -26,6 +27,7 @@ const App = () => (
         </Route>
         <Route path={paths.home}>
           <Home />
+          <Dummy />
         </Route>
       </Switch>
     </Router>
