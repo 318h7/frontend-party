@@ -5,11 +5,17 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import store from 'store/store';
 import paths from 'constants/paths';
 import Home from 'components/home-page';
-import CSSReset from 'components/css-reset';
+import CSSReset from 'components/styled/css-reset';
+import AppFont from 'components/styled/app-font';
+import theme from 'theme';
+
+require('regenerator-runtime/runtime');
+
 
 function List() {
   return <h2>List</h2>;
@@ -17,17 +23,20 @@ function List() {
 
 const App = () => (
   <Provider store={store}>
-    <CSSReset />
-    <Router>
-      <Switch>
-        <Route path={paths.list}>
-          <List />
-        </Route>
-        <Route path={paths.home}>
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      <AppFont />
+      <Router>
+        <Switch>
+          <Route path={paths.list}>
+            <List />
+          </Route>
+          <Route path={paths.home}>
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   </Provider>
 );
 

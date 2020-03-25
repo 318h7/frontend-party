@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Layout from 'components/layout';
-import TestioLogo from 'components/testio-logo';
+import Layout from 'components/styled/layout';
+
+import LoginForm from 'components/home-page/login-form';
 
 const Background = styled.div`
   background-color: #0b0f27;
@@ -15,20 +16,27 @@ const Background = styled.div`
   height: 100%;
 `;
 
-const Form = styled.div`
+const Body = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   width: 360px;
+  padding: 0px 20px;
+`;
+
+const TestioLogo = styled.img`
+  content: url(/img/logo-testio-white.png);
+  padding-bottom: 80px;
 `;
 
 const HomePage = () => (
   <Layout>
     <Background>
-      <Form>
-        <TestioLogo width="100%" height="100%" />
-      </Form>
+      <Body>
+        <TestioLogo />
+        <LoginForm />
+      </Body>
     </Background>
   </Layout>
 );
