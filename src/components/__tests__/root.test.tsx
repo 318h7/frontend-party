@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 
-import App from '../App';
+import App from '../app';
 
 test('loads and displays greeting', async () => {
   const { getByTestId } = render(<App />);

@@ -8,11 +8,8 @@ import {
 
 import store from 'store/store';
 import paths from 'constants/paths';
-import Dummy from 'components/Dummy';
-
-function Home() {
-  return <h2>Home</h2>;
-}
+import Home from 'components/home-page';
+import CSSReset from 'components/css-reset';
 
 function List() {
   return <h2>List</h2>;
@@ -20,6 +17,7 @@ function List() {
 
 const App = () => (
   <Provider store={store}>
+    <CSSReset />
     <Router>
       <Switch>
         <Route path={paths.list}>
@@ -27,7 +25,6 @@ const App = () => (
         </Route>
         <Route path={paths.home}>
           <Home />
-          <Dummy />
         </Route>
       </Switch>
     </Router>

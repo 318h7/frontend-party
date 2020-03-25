@@ -15,8 +15,9 @@
  "ignorePatterns": ["node_modules/"],
   "extends": [ "airbnb" ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
+    "react/jsx-props-no-spreading": ["warn"],
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
     "import/extensions": ["error", "ignorePackages",
       {
