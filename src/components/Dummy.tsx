@@ -22,9 +22,12 @@ const Dummy = () => {
   }, []);
 
   return (
-    <Title data-qa="title">
-      {error}
-    </Title>
+    <>
+      <Title data-qa="title">
+        Hello!
+      </Title>
+      <div>{error}</div>
+    </>
   );
 };
 

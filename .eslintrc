@@ -13,19 +13,19 @@
     "import/resolver": "webpack"
   },
  "ignorePatterns": ["node_modules/"],
-  "extends": [
-    "airbnb"
-  ],
+  "extends": [ "airbnb" ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
-    "import/extensions": ["error", "ignorePackages", {
-      "js": "never",
-      "mjs": "never",
-      "jsx": "never",
-      "ts": "never",
-      "tsx": "never",
-    }],
+    "import/extensions": ["error", "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   }
 }

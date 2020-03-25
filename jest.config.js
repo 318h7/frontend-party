@@ -8,6 +8,6 @@ module.exports = {
     '<rootDir>/tests/setup-unit-tests.ts',
   ],
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.test.{ts,tsx}',
+    '<rootDir>/src/**/__tests__/*.test.{ts,tsx}',
   ],
 };

@@ -1,16 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import loginRequest, { Credentials } from 'api/login';
+import { Credentials, login as loginRequest } from 'api/login';
 import { clearToken, storeToken } from 'utils/session-storage';
 import { AppThunk } from 'store/store';
 
 export type AuthState = {
   loading: boolean,
   error?: string,
-};
-
-interface AuthResponse {
-  token: string,
 }
 
 interface AuthError {
@@ -28,11 +24,9 @@ const authSlice = createSlice({
     setLoading(state: AuthState) {
       state.loading = true;
     },
-    loginSuccess(state: AuthState, { payload }: PayloadAction<AuthResponse>) {
-      const { token } = payload;
+    loginSuccess(state: AuthState) {
       state.loading = false;
       state.error = undefined;
-      storeToken(token);
     },
     loginFailed(state: AuthState, { payload }: PayloadAction<AuthError>) {
       state.loading = false;
@@ -54,8 +48,9 @@ export const login = (
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(setLoading());
-    const { data } = await loginRequest(credentials);
-    dispatch(loginSuccess(data));
+    const { data: { token } } = await loginRequest(credentials);
+    dispatch(loginSuccess());
+    storeToken(token);
   } catch ({ response: { data } }) {
     dispatch(loginFailed(data));
   }

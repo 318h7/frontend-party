@@ -11,7 +11,7 @@ export interface Credentials {
   password: string,
 }
 
-export default (credentials: Credentials) => axios.post<Response>(
+export const login = (credentials: Credentials) => axios.post<Response>(
   endpoints.login,
   { ...credentials },
 );
