@@ -62,7 +62,14 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            cacheCompression: isProduction,
+            compact: isProduction,
+          },
+        },
         exclude: /node_modules/,
       },
       {
