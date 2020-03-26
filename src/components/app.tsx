@@ -1,32 +1,29 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
 
 import store from 'store/store';
 import paths from 'constants/paths';
 import Home from 'components/home-page';
+import List from 'components/servers-list';
 import CSSReset from 'components/styled/css-reset';
 import AppFont from 'components/styled/app-font';
 import theme from 'theme';
+import history from 'browserHistory';
 
 require('regenerator-runtime/runtime');
-
-
-function List() {
-  return <h2>List</h2>;
-}
 
 const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <CSSReset />
       <AppFont />
-      <Router>
+      <ConnectedRouter history={history}>
         <Switch>
           <Route path={paths.list}>
             <List />
@@ -35,7 +32,7 @@ const App = () => (
             <Home />
           </Route>
         </Switch>
-      </Router>
+      </ConnectedRouter>
     </ThemeProvider>
   </Provider>
 );

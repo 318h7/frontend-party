@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { push } from 'connected-react-router';
 
 import { Credentials, login as loginRequest } from 'api/login';
 import { clearToken, storeToken } from 'utils/session-storage';
 import { AppThunk } from 'store/store';
+import paths from 'constants/paths';
 
 export type AuthState = {
   loading: boolean,
@@ -51,11 +53,13 @@ export const login = (
     const { data: { token } } = await loginRequest(credentials);
     dispatch(loginSuccess());
     storeToken(token);
+    dispatch(push(paths.list));
   } catch ({ response: { data } }) {
     dispatch(loginFailed(data));
   }
 };
 
-export const logout = (): AppThunk => async () => {
+export const logout = (): AppThunk => async (dispatch) => {
+  dispatch(push(paths.home));
   clearToken();
 };

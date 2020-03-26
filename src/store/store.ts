@@ -1,10 +1,20 @@
 import { configureStore, Action } from '@reduxjs/toolkit';
-import { ThunkAction } from 'redux-thunk';
+import thunk, { ThunkAction } from 'redux-thunk';
+import { routerMiddleware } from 'connected-react-router';
+
+import history from 'browserHistory';
 
 import rootReducer, { AppState } from './root-reducer';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const store = configureStore({
   reducer: rootReducer,
+  middleware: [
+    thunk,
+    routerMiddleware(history),
+  ],
+  devTools: !isProduction,
 });
 
 if (process.env.NODE_ENV === 'development' && module.hot) {

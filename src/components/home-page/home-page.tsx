@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Layout from 'components/styled/layout';
 
-import LoginForm from 'components/home-page/login-form';
+import LoginForm from './login-form';
 
 const Background = styled.div`
   background-color: #0b0f27;

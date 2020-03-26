@@ -1,6 +1,9 @@
 import * as loginAPI from 'api/login';
 import { getToken, clearToken, storeToken } from 'utils/session-storage';
 import { mockAxiosResponse, mockAxiosError } from 'utils/test';
+import { push } from 'connected-react-router';
+
+import paths from 'constants/paths';
 
 import {
   setLoading, loginSuccess, loginFailed, login, logout,
@@ -31,11 +34,12 @@ describe('login thunk', () => {
       clearToken();
     });
 
-    it('should call two reducers', async () => {
+    it('should call multiple reducers', async () => {
       await login(dummyUser)(dispatch, getState, undefined);
 
       expect(dispatch).toBeCalledWith({ type: setLoading.type });
       expect(dispatch).toBeCalledWith({ type: loginSuccess.type });
+      expect(dispatch).toBeCalledWith(push(paths.list));
     });
 
     it('should persist token', async () => {
@@ -62,13 +66,24 @@ describe('login thunk', () => {
 });
 
 describe('logout thunk', () => {
-  it('should clear local storage on logout', async () => {
+  const dispatch = jest.fn();
+  const getState = jest.fn();
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it('should clear local storage', async () => {
     storeToken('random');
-    const dispatch = jest.fn();
-    const getState = jest.fn();
 
     await logout()(dispatch, getState, undefined);
 
     expect(getToken()).toBe(null);
+  });
+
+  it('should redirect home', async () => {
+    await logout()(dispatch, getState, undefined);
+
+    expect(dispatch).toBeCalledWith(push(paths.home));
   });
 });
