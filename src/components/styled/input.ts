@@ -10,7 +10,7 @@ const Input = styled.input`
   box-sizing: border-box;
   letter-spacing: 0.4px;
   font-size: 16px;
-  color: {$props => props.theme.textMain};
+  color: ${({ theme }) => theme.textMain};
 
   &:focus {
     border: none;
@@ -20,13 +20,13 @@ const Input = styled.input`
   &::placeholder {
     letter-spacing: 0.4px;
     font-weight: 300;
-    color: ${(props) => props.theme.placeholderText};
+    color: ${({ theme }) => theme.placeholderText};
   }
 
   &:disabled {
     cursor: auto;
-    background-color: ${(props) => props.theme.inputDisabled};
-    color: ${(props) => props.theme.textDisabled};
+    background-color: ${({ theme }) => theme.inputDisabled};
+    color: ${({ theme }) => theme.textDisabled};
   }
 `;
 
