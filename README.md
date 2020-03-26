@@ -14,21 +14,33 @@ To run test:
 To lint the project:
 `npm run lint`
 
+To verify TypeScript types:
+`npm run types`
+
 To run the production bundle size analyzer:
 `npm run analyze`
 
+## Design and motivation
 
-## Chosen Stack
+Since using Redux was part of the task and using it just to store the list did
+not sound fun at all, I have decided to use thunk and connected router to handle
+all app side effects. This lets me separate the presentation layer from other concerns.
+
+
+## Stack Notes
 
 Bundler: Webpack,
-State: Redux + Redux Toolkit + Thunk
+Transpiler: Babel,
+Styles: Styled Components
+State Management: Redux + Redux Toolkit
+Side Effects: Thunk + Connected React Router
 REST: Axios
-Validation: yup
-Form Management: Formik
-Styles: Styled components
 Tests: react-testing-library
 
-
 ## TODO
-Request state - isLoading
-Forms
+* Thunk for Servers List + Tests
+* Toast to show BE errors
+* Preloader
+* Style Animations (n2h)
+* Filter list (ez n2h)
+* Improve Styled components theme to have proper Types 

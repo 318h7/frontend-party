@@ -16,8 +16,6 @@ import AppFont from 'components/styled/app-font';
 import theme from 'theme';
 import history from 'browserHistory';
 
-require('regenerator-runtime/runtime');
-
 const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
