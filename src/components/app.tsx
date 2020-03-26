@@ -12,7 +12,6 @@ import Routes from 'components/routes';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-
 const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>

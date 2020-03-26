@@ -1,4 +1,4 @@
 export default {
   home: '/',
-  list: '/list',
+  list: '/servers',
 };
