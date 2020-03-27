@@ -44,9 +44,9 @@ REST: Axios
 Tests: react-testing-library
 
 ## TODO
-* Sorting
 * Toast to show BE errors
 * Preloader
-* Style Animations (n2h)
+* Custom Scrollbar
+* Style Animations (button hover) (n2h)
 * Filter list (ez n2h)
 * Improve Styled components theme to have proper Types 

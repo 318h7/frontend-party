@@ -1,52 +1,29 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { AppState } from 'store/root-reducer';
-import { fetchServers } from 'store/servers/servers-slice';
+import { fetchServers, toggleName, toggleDistance } from 'store/servers/servers-slice';
 
-const ListHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 15px;
-  background-color: ${({ theme }) => theme.listHeader};
-  height: 58px;
-  border-top: 1px solid ${({ theme }) => theme.tableBorder};
-  border-bottom: 1px solid ${({ theme }) => theme.tableBorder};
-`;
+import {
+  ListBody, ListItem, ListText, ListHeader, HeaderItem, HeaderIcon, HeaderText,
+} from './styled';
 
-const ListBody = styled.div`
-  height: calc(100vh - 170px);
-  overflow-x: auto;
-`;
-
-const ListItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 15px;
-  height: 58px;
-  border-bottom: 1px solid ${({ theme }) => theme.tableBorder};
-`;
-
-const ListText = styled.span`
-  color: ${({ theme }) => theme.textLight};
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 0.4px;
-  line-height: 30px;
-`;
-
-const HeaderItem = styled.span`
-  color: ${({ theme }) => theme.textMain};
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 1.4px;
-  line-height: 30px;
-  text-transform: uppercase;
-`;
-
+interface HeaderProps {
+  ascending?: boolean;
+  title: string;
+  onClick: () => void;
+}
+const Header = ({ ascending, title, onClick }: HeaderProps) => (
+  <HeaderItem onClick={onClick}>
+    <HeaderText>
+      {title}
+    </HeaderText>
+    {
+      ascending !== undefined
+      && <HeaderIcon ascending={ascending} />
+    }
+  </HeaderItem>
+);
 
 const List = () => {
   const dispatch = useDispatch();
@@ -57,10 +34,12 @@ const List = () => {
   const {
     // loading,
     servers,
+    nameAscending,
+    distanceAscending,
   } = useSelector((state: AppState) => state.servers);
 
   const drawList = () => servers.map((item) => (
-    <ListItem key={item.name}>
+    <ListItem key={item.name + item.distance}>
       <ListText>
         {item.name}
       </ListText>
@@ -70,11 +49,27 @@ const List = () => {
     </ListItem>
   ));
 
+  const handleNameClick = () => {
+    dispatch(toggleName());
+  };
+
+  const handleDistanceClick = () => {
+    dispatch(toggleDistance());
+  };
+
   return (
     <>
       <ListHeader>
-        <HeaderItem>Server</HeaderItem>
-        <HeaderItem>Distance</HeaderItem>
+        <Header
+          ascending={nameAscending}
+          onClick={handleNameClick}
+          title="Server"
+        />
+        <Header
+          ascending={distanceAscending}
+          onClick={handleDistanceClick}
+          title="Distance"
+        />
       </ListHeader>
       <ListBody>
         {drawList()}
