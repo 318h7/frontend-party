@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { AppState } from 'store/root-reducer';
+import Preloader from 'components/preloader';
 import { fetchServers, toggleName, toggleDistance } from 'store/servers/servers-slice';
 
 import {
@@ -32,7 +33,7 @@ const List = () => {
   }, []);
 
   const {
-    // loading,
+    loading,
     servers,
     nameAscending,
     distanceAscending,
@@ -72,7 +73,7 @@ const List = () => {
         />
       </ListHeader>
       <ListBody>
-        {drawList()}
+        {loading ? <Preloader /> : drawList()}
       </ListBody>
     </>
   );

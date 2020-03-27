@@ -1,9 +1,10 @@
 const theme = {
   main: '#9fd533',
   mainHover: '#86b300',
-  inputDisabled: '#bbb',
+  inputDisabled: '#ddd',
   textMain: '#999',
-  textDisabled: '#777',
+  textDisabled: '#bbb',
+  buttonDisabled: '#888',
   textLight: '#666',
   placeholderText: '#ccc',
   whiteHover: '#99cc33',

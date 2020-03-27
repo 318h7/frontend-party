@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
+  position: relative;
   width: 100%;
   height: 56px;
   border-radius: 6px;
@@ -24,16 +25,16 @@ const Button = styled.button`
 
   &:disabled {
     cursor: auto;
-    background-color: ${({ theme }) => theme.textMain};
-    color: ${({ theme }) => theme.placeholderText};
+    background-color: ${({ theme }) => theme.buttonDisabled};
+    color: ${({ theme }) => theme.textMain};
 
     &:hover {
-      background-color: ${({ theme }) => theme.textMain};
+      background-color: ${({ theme }) => theme.buttonDisabled};
     }
   }
 `;
 
-export const WhiteButton = styled(Button)`
+export const OutlinedButton = styled(Button)`
   width: auto;
   background-color: ${({ theme }) => theme.white};
   color: ${({ theme }) => theme.whiteTextColor};

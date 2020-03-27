@@ -44,7 +44,7 @@ REST: Axios
 Tests: react-testing-library
 
 ## TODO
-* Preloader
 * Custom Scrollbar
+* Add font to the bundle
 * Review
 * Improve Styled components theme to have proper Types 

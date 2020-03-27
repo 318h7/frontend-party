@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { PasswordInput, UserInput } from 'components/styled/input';
 import Button from 'components/styled/button';
+import Preloader from 'components/preloader';
 import { login } from 'store/auth/auth-slice';
 import { AppState } from 'store/root-reducer';
 
@@ -79,9 +80,12 @@ const LoginForm = () => {
         disabled={loading}
         error={errors.password}
       />
-      <Button onClick={handleSubmit} disabled={loading}>
-        Log In
-      </Button>
+      <div>
+        <Button onClick={handleSubmit} disabled={loading}>
+          Log In
+          { loading && <Preloader />}
+        </Button>
+      </div>
     </Form>
   );
 };

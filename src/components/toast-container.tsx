@@ -6,7 +6,6 @@ import { AppState } from 'store/root-reducer';
 import Toast from 'components/toast';
 
 export const ToastContainerStyled = styled.div`
-  overflow: hidden;
   display: flex;
   justify-content: center;
 `;

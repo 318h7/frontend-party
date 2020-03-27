@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import { WhiteButton } from 'components/styled/button';
+import { OutlinedButton } from 'components/styled/button';
 import { logout } from 'store/auth/auth-slice';
 
 const Bar = styled.div`
@@ -17,7 +17,7 @@ const TestioLogo = styled.img`
   content: url(/img/logo-testio-black.png);
 `;
 
-const StyledWhiteButton = styled(WhiteButton)`
+const LogoutButton = styled(OutlinedButton)`
   width: 100px;
   text-align: right;
   padding-right: 10px;
@@ -37,9 +37,9 @@ const AppBar = () => {
   return (
     <Bar>
       <TestioLogo />
-      <StyledWhiteButton onClick={handleLogout}>
+      <LogoutButton onClick={handleLogout}>
         Logout
-      </StyledWhiteButton>
+      </LogoutButton>
     </Bar>
   );
 };
