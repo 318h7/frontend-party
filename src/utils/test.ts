@@ -12,6 +12,7 @@ export const mockAxiosResponse: MockAxiosResponse = (data, status = 200) => ({
 
 
 type MockAxiosError = <T extends object>(data: T, status?: number) => AxiosError<T>;
+
 export const mockAxiosError: MockAxiosError = (data, status = 400) => ({
   name: 'error',
   message: 'mock_error',

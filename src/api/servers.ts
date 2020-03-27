@@ -9,7 +9,7 @@ export interface Server {
 export type Servers = Server[];
 
 interface Response {
-  servers: Server[],
+  servers: Servers,
 }
 
 export const getServers = () => axios.get<Response>(

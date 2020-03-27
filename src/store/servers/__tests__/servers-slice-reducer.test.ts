@@ -2,7 +2,7 @@ import servers, { setLoading, fetchSuccess, fetchFailed } from '../servers-slice
 
 describe('servers reducer', () => {
   it('should handle initial state', () => {
-    expect(servers(undefined, { type: 'any' })).toEqual({ servers: [], isLoading: false });
+    expect(servers(undefined, { type: 'any' })).toEqual({ servers: [], loading: false });
   });
 
   it('should handle SET_LOADING', () => {

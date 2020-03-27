@@ -25,10 +25,10 @@ const serversSlice = createSlice({
     setLoading(state: ServersState) {
       state.loading = true;
     },
-    fetchSuccess(state: ServersState, { payload }: PayloadAction<Servers>) {
+    fetchSuccess(state: ServersState, { payload }: PayloadAction<{servers: Servers}>) {
       state.loading = false;
       state.error = undefined;
-      state.servers = payload;
+      state.servers = payload.servers;
     },
     fetchFailed(state: ServersState, { payload }: PayloadAction<ServersError>) {
       state.loading = false;
@@ -48,8 +48,8 @@ export default serversSlice.reducer;
 export const fetchServers = (): AppThunk => async (dispatch) => {
   try {
     dispatch(setLoading());
-    const { data: { servers } } = await getServers();
-    dispatch(fetchSuccess(servers));
+    const { data } = await getServers();
+    dispatch(fetchSuccess(data));
   } catch ({ response: { data } }) {
     dispatch(fetchFailed(data));
   }

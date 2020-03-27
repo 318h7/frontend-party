@@ -6,7 +6,7 @@ import {
 } from '../servers-slice';
 
 describe('login thunk', () => {
-  const loginSpy = jest.spyOn(serversAPI, 'getServers');
+  const serversSpy = jest.spyOn(serversAPI, 'getServers');
   const dispatch = jest.fn();
   const getState = jest.fn();
   const mockServers = [{ name: 'test', distance: 10 }];
@@ -17,13 +17,13 @@ describe('login thunk', () => {
 
   describe('happy path', () => {
     beforeEach(() => {
-      loginSpy.mockImplementation(
+      serversSpy.mockImplementation(
         () => Promise.resolve(mockAxiosResponse({ servers: mockServers })),
       );
     });
 
     afterEach(() => {
-      loginSpy.mockReset();
+      serversSpy.mockReset();
     });
 
 
@@ -40,7 +40,7 @@ describe('login thunk', () => {
 
   describe('sad path', () => {
     it('should store error on failed login', async () => {
-      loginSpy.mockImplementation(
+      serversSpy.mockImplementation(
         () => Promise.reject(mockAxiosError({ message: 'random error' }, 500)),
       );
 
