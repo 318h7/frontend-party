@@ -5,6 +5,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 `;
 
 const Error = styled.h5`
@@ -28,7 +29,7 @@ class ErrorBoundary extends Component<any, { hasError: boolean }> {
     if (hasError) {
       return (
         <Container>
-          <Error>This shouldn&apos;t have happened...</Error>
+          <Error>This shouldn&apos;t have happened... :/ </Error>
         </Container>
       );
     }

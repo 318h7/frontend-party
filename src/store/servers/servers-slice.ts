@@ -25,10 +25,10 @@ const serversSlice = createSlice({
     setLoading(state: ServersState) {
       state.loading = true;
     },
-    fetchSuccess(state: ServersState, { payload }: PayloadAction<{servers: Servers}>) {
+    fetchSuccess(state: ServersState, { payload }: PayloadAction<Servers>) {
       state.loading = false;
       state.error = undefined;
-      state.servers = payload.servers;
+      state.servers = payload;
     },
     fetchFailed(state: ServersState, { payload }: PayloadAction<ServersError>) {
       state.loading = false;

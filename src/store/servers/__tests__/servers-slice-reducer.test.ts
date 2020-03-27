@@ -26,7 +26,7 @@ describe('servers reducer', () => {
         undefined,
         {
           type: fetchSuccess.type,
-          payload: { servers: mockServers },
+          payload: mockServers,
         },
       ),
     ).toEqual({

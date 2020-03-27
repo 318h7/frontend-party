@@ -18,7 +18,7 @@ describe('login thunk', () => {
   describe('happy path', () => {
     beforeEach(() => {
       serversSpy.mockImplementation(
-        () => Promise.resolve(mockAxiosResponse({ servers: mockServers })),
+        () => Promise.resolve(mockAxiosResponse(mockServers)),
       );
     });
 
@@ -33,7 +33,7 @@ describe('login thunk', () => {
       expect(dispatch).toBeCalledWith({ type: setLoading.type });
       expect(dispatch).toBeCalledWith({
         type: fetchSuccess.type,
-        payload: { servers: mockServers },
+        payload: mockServers,
       });
     });
   });

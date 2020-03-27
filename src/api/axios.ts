@@ -5,9 +5,8 @@ import { getToken } from 'utils/session-storage';
 export const addAuthHeaderIfTokenAvailable = (request: AxiosRequestConfig) => {
   const token = getToken();
   const intercepted = request;
-
   if (token) {
-    intercepted.headers.common.Authentication = `Bearer: ${token}`;
+    intercepted.headers.Authorization = `Bearer ${token}`;
   }
   return intercepted;
 };

@@ -8,10 +8,6 @@ export interface Server {
 }
 export type Servers = Server[];
 
-interface Response {
-  servers: Servers,
-}
-
-export const getServers = () => axios.get<Response>(
+export const getServers = () => axios.get<Servers>(
   endpoints.servers,
 );

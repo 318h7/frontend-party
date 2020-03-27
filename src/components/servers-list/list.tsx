@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { AppState } from 'store/root-reducer';
+import { fetchServers } from 'store/servers/servers-slice';
 
 const ListHeader = styled.div`
   display: flex;
@@ -45,41 +49,23 @@ const HeaderItem = styled.span`
 
 
 const List = () => {
-  const items = [
-    {
-      name: 'Canada #10',
-      distance: '9203 km',
-    },
-    {
-      name: 'Lithuania #2',
-      distance: '203 km',
-    },
-    {
-      name: 'France #7',
-      distance: '3421 km',
-    },
-    {
-      name: 'Canada #3',
-      distance: '1304 km',
-    },
-    {
-      name: 'Poland #4',
-      distance: '703 km',
-    },
-    {
-      name: 'Germany #1',
-      distance: '1221 km',
-    },
-  ];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchServers());
+  }, []);
 
+  const {
+    // loading,
+    servers,
+  } = useSelector((state: AppState) => state.servers);
 
-  const drawList = () => items.map((item) => (
+  const drawList = () => servers.map((item) => (
     <ListItem key={item.name}>
       <ListText>
         {item.name}
       </ListText>
       <ListText>
-        {item.distance}
+        {`${item.distance} km`}
       </ListText>
     </ListItem>
   ));
