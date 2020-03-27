@@ -44,11 +44,9 @@ REST: Axios
 Tests: react-testing-library
 
 ## TODO
-* Thunk for Servers List + Tests
 * Sorting
 * Toast to show BE errors
 * Preloader
-* Protected Route
 * Style Animations (n2h)
 * Filter list (ez n2h)
 * Improve Styled components theme to have proper Types 

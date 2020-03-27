@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { ConnectedRouter } from 'connected-react-router';
+import ProtectedRoute from 'components/protected-route';
 
 import history from 'browserHistory';
 import paths from 'constants/paths';
@@ -31,9 +32,9 @@ const Routes = () => (
   <ConnectedRouter history={history}>
     <Suspense fallback={<Preloader />}>
       <Switch>
-        <Route path={paths.list}>
+        <ProtectedRoute path={paths.list}>
           <List />
-        </Route>
+        </ProtectedRoute>
         <Route path={paths.home}>
           <Home />
         </Route>
