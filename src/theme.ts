@@ -1,4 +1,4 @@
-export default {
+const theme = {
   main: '#9fd533',
   mainHover: '#86b300',
   inputDisabled: '#bbb',
@@ -11,4 +11,7 @@ export default {
   whiteTextColor: '#2f3254',
   listHeader: '#f5f5f5',
   tableBorder: '#e6e6e6',
+  error: '#da2a2a',
 };
+
+export default theme;

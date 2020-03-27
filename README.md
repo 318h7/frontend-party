@@ -44,8 +44,7 @@ REST: Axios
 Tests: react-testing-library
 
 ## TODO
-* Form Validation
 * Preloader
 * Custom Scrollbar
-* Style Animations (button hover) (n2h)
+* Review
 * Improve Styled components theme to have proper Types 

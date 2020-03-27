@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-const Input = styled.input`
+interface InputProps {
+  readonly error?: boolean,
+  theme: any;
+}
+
+
+const Input = styled.input<InputProps>`
   width: 100%;
   height: 56px;
   border: none;
@@ -11,16 +17,18 @@ const Input = styled.input`
   letter-spacing: 0.4px;
   font-size: 16px;
   color: ${({ theme }) => theme.textMain};
+  border: ${({ error, theme }: InputProps) => (error ? (`2px solid ${theme.error}`) : 'none')};
 
   &:focus {
     border: none;
     outline-color: rgba(0,0,0,0);
+    border: ${({ error, theme }: InputProps) => (error ? (`2px solid ${theme.error}`) : 'none')};
   }
 
   &::placeholder {
     letter-spacing: 0.4px;
     font-weight: 300;
-    color: ${({ theme }) => theme.placeholderText};
+    color: ${({ error, theme }) => (error ? theme.error : theme.placeholderText)};
   }
 
   &:disabled {

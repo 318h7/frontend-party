@@ -13,20 +13,34 @@ const Form = styled.form`
   }
 `;
 
+interface Validation {
+  username: boolean;
+  password: boolean;
+}
+
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<Validation>({ username: false, password: false });
   const dispatch = useDispatch();
 
-  const {
-    loading,
-    // error,
-  } = useSelector((state: AppState) => state.auth);
+  const { loading } = useSelector((state: AppState) => state.auth);
+
+  const isFieldValid = (value: string) => value.trim() !== '';
+
+  const validate = () => ({
+    username: !isFieldValid(username),
+    password: !isFieldValid(password),
+  });
 
   const handleSubmit = () => {
-    dispatch(
-      login({ username, password }),
-    );
+    const formErrors = validate();
+    if (!formErrors.username && !formErrors.password) {
+      dispatch(
+        login({ username, password }),
+      );
+    }
+    setErrors(formErrors);
   };
 
   const preventDefaultSubmit = (event: FormEvent) => {
@@ -41,23 +55,29 @@ const LoginForm = () => {
     setPassword(event.target.value);
   };
 
+  const getPlaceholder = (placeholder: string, isValid?: boolean) => (isValid
+    ? placeholder
+    : 'Required');
+
   return (
     <Form onSubmit={preventDefaultSubmit}>
       <UserInput
         autoFocus
         name="username"
-        placeholder="Username"
+        placeholder={getPlaceholder('Username*', errors.username)}
         onChange={handleNameChange}
         value={username}
         disabled={loading}
+        error={errors.username}
       />
       <PasswordInput
         name="password"
         type="password"
-        placeholder="Password"
+        placeholder={getPlaceholder('Password*', errors.password)}
         value={password}
         onChange={handlePasswordChange}
         disabled={loading}
+        error={errors.password}
       />
       <Button onClick={handleSubmit} disabled={loading}>
         Log In
