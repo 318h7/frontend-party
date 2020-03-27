@@ -2,17 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Server, Servers, getServers } from 'api/servers';
 import { AppThunk } from 'store/store';
+import { fireToast } from 'store/toast/toast-slice';
 
 export type ServersState = {
   loading: boolean,
-  error?: string,
   servers: Servers,
   nameAscending?: boolean,
   distanceAscending?: boolean,
-}
-
-interface ServersError {
-  message: string,
 }
 
 const initialState: ServersState = {
@@ -34,12 +30,10 @@ const serversSlice = createSlice({
     },
     fetchSuccess(state: ServersState, { payload }: PayloadAction<Servers>) {
       state.loading = false;
-      state.error = undefined;
       state.servers = payload;
     },
-    fetchFailed(state: ServersState, { payload }: PayloadAction<ServersError>) {
+    fetchFailed(state: ServersState) {
       state.loading = false;
-      state.error = payload.message;
     },
     toggleNameSorting(state: ServersState) {
       state.nameAscending = state.nameAscending !== undefined
@@ -76,7 +70,8 @@ export const fetchServers = (): AppThunk => async (dispatch) => {
     const { data } = await getServers();
     dispatch(fetchSuccess(data));
   } catch ({ response: { data } }) {
-    dispatch(fetchFailed(data));
+    dispatch(fetchFailed());
+    dispatch(fireToast(data.message));
   }
 };
 

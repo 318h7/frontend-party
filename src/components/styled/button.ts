@@ -12,6 +12,7 @@ const Button = styled.button`
   letter-spacing: 0.4px;
   line-height: 30px;
   cursor: pointer;
+  transition: background-color 0.3s;
 
   &:active, &:focus{
     outline-color: rgba(0,0,0,0);

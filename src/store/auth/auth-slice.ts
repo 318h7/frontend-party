@@ -1,18 +1,14 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { push } from 'connected-react-router';
 
 import { Credentials, login as loginRequest } from 'api/login';
 import { clearToken, storeToken } from 'utils/session-storage';
 import { AppThunk } from 'store/store';
 import paths from 'constants/paths';
+import { fireToast } from 'store/toast/toast-slice';
 
 export type AuthState = {
   loading: boolean,
-  error?: string,
-}
-
-interface AuthError {
-  message: string,
 }
 
 const initialState: AuthState = {
@@ -28,11 +24,9 @@ const authSlice = createSlice({
     },
     loginSuccess(state: AuthState) {
       state.loading = false;
-      state.error = undefined;
     },
-    loginFailed(state: AuthState, { payload }: PayloadAction<AuthError>) {
+    loginFailed(state: AuthState) {
       state.loading = false;
-      state.error = payload.message;
     },
   },
 });
@@ -55,7 +49,8 @@ export const login = (
     storeToken(token);
     dispatch(push(paths.list));
   } catch ({ response: { data } }) {
-    dispatch(loginFailed(data));
+    dispatch(loginFailed());
+    dispatch(fireToast(data.message));
   }
 };
 
