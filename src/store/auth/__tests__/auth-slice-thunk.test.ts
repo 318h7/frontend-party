@@ -1,4 +1,5 @@
 import * as loginAPI from 'api/login';
+import * as toastSlice from 'store/toast/toast-slice';
 import { getToken, clearToken, storeToken } from 'utils/session-storage';
 import { mockAxiosResponse, mockAxiosError } from 'utils/test';
 import { push } from 'connected-react-router';
@@ -6,7 +7,7 @@ import { push } from 'connected-react-router';
 import paths from 'constants/paths';
 
 import {
-  setLoading, loginSuccess, loginFailed, login, logout,
+  startLoading, stopLoading, login, logout,
 } from '../auth-slice';
 
 describe('login thunk', () => {
@@ -34,11 +35,11 @@ describe('login thunk', () => {
       clearToken();
     });
 
-    it('should call multiple reducers', async () => {
+    it('should redirect to list page', async () => {
       await login(dummyUser)(dispatch, getState, undefined);
 
-      expect(dispatch).toBeCalledWith({ type: setLoading.type });
-      expect(dispatch).toBeCalledWith({ type: loginSuccess.type });
+      expect(dispatch).toBeCalledWith({ type: startLoading.type });
+      expect(dispatch).toBeCalledWith({ type: stopLoading.type });
       expect(dispatch).toBeCalledWith(push(paths.list));
     });
 
@@ -50,17 +51,16 @@ describe('login thunk', () => {
   });
 
   describe('sad path', () => {
-    it('should store error on failed login', async () => {
+    it('should fire toast', async () => {
+      const toastSpy = jest.spyOn(toastSlice, 'fireToast');
+      const error = { message: 'unathorized' };
       loginSpy.mockImplementation(
-        () => Promise.reject(mockAxiosError({ message: 'unauthorized' }, 401)),
+        () => Promise.reject(mockAxiosError(error, 401)),
       );
 
       await login(dummyUser)(dispatch, getState, undefined);
-
-      expect(dispatch).toBeCalledWith({
-        type: loginFailed.type,
-        payload: { message: 'unauthorized' },
-      });
+      expect(dispatch).toBeCalledWith({ type: stopLoading.type });
+      expect(toastSpy).toBeCalledWith(error.message);
     });
   });
 });

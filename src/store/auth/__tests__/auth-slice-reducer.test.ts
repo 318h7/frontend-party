@@ -1,49 +1,32 @@
-import auth, { setLoading, loginSuccess, loginFailed } from '../auth-slice';
+import auth, { startLoading, stopLoading } from '../auth-slice';
 
 describe('auth reducer', () => {
-  it('should handle initial state', () => {
+  it('should have initial state', () => {
     expect(auth(undefined, { type: 'any' })).toEqual({ loading: false });
   });
 
-  it('should handle SET_LOADING', () => {
+  it('should handle START_LOADING', () => {
     expect(
       auth(
         undefined,
-        { type: setLoading.type },
+        { type: startLoading.type },
       ),
     ).toEqual({
       loading: true,
-      error: undefined,
     });
   });
 
-  it('should handle LOGIN_SUCCESS', () => {
+  it('should handle STOP_LOADING', () => {
     expect(
       auth(
         undefined,
         {
-          type: loginSuccess.type,
+          type: stopLoading.type,
           payload: { token: 'secret' },
         },
       ),
     ).toEqual({
       loading: false,
-      error: undefined,
-    });
-  });
-
-  it('should handle LOGIN_FAILED', () => {
-    expect(
-      auth(
-        undefined,
-        {
-          type: loginFailed.type,
-          payload: { message: 'error' },
-        },
-      ),
-    ).toEqual({
-      loading: false,
-      error: 'error',
     });
   });
 });

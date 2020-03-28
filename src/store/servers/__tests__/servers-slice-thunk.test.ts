@@ -1,8 +1,9 @@
 import * as serversAPI from 'api/servers';
+import * as toastSlice from 'store/toast/toast-slice';
 import { mockAxiosResponse, mockAxiosError } from 'utils/test';
 
 import {
-  setLoading, fetchSuccess, fetchFailed, fetchServers,
+  startLoading, fetchSuccess, stopLoading, fetchServers,
 } from '../servers-slice';
 
 describe('login thunk', () => {
@@ -27,10 +28,10 @@ describe('login thunk', () => {
     });
 
 
-    it('should call multiple reducers', async () => {
+    it('should call store servers list', async () => {
       await fetchServers()(dispatch, getState, undefined);
 
-      expect(dispatch).toBeCalledWith({ type: setLoading.type });
+      expect(dispatch).toBeCalledWith({ type: startLoading.type });
       expect(dispatch).toBeCalledWith({
         type: fetchSuccess.type,
         payload: mockServers,
@@ -39,17 +40,18 @@ describe('login thunk', () => {
   });
 
   describe('sad path', () => {
-    it('should store error on failed login', async () => {
+    it('should fire toast', async () => {
+      const toastSpy = jest.spyOn(toastSlice, 'fireToast');
+      const error = { message: 'random error' };
       serversSpy.mockImplementation(
-        () => Promise.reject(mockAxiosError({ message: 'random error' }, 500)),
+        () => Promise.reject(mockAxiosError(error, 500)),
       );
 
       await fetchServers()(dispatch, getState, undefined);
 
-      expect(dispatch).toBeCalledWith({
-        type: fetchFailed.type,
-        payload: { message: 'random error' },
-      });
+      expect(dispatch).toBeCalledWith({ type: stopLoading.type });
+
+      expect(toastSpy).toBeCalledWith(error.message);
     });
   });
 });

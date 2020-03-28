@@ -25,14 +25,14 @@ const serversSlice = createSlice({
   name: 'servers',
   initialState,
   reducers: {
-    setLoading(state: ServersState) {
+    startLoading(state: ServersState) {
       state.loading = true;
     },
     fetchSuccess(state: ServersState, { payload }: PayloadAction<Servers>) {
       state.loading = false;
       state.servers = payload;
     },
-    fetchFailed(state: ServersState) {
+    stopLoading(state: ServersState) {
       state.loading = false;
     },
     toggleNameSorting(state: ServersState) {
@@ -55,9 +55,9 @@ const serversSlice = createSlice({
 });
 
 export const {
-  setLoading,
+  startLoading,
   fetchSuccess,
-  fetchFailed,
+  stopLoading,
   toggleDistanceSorting,
   toggleNameSorting,
 } = serversSlice.actions;
@@ -66,11 +66,11 @@ export default serversSlice.reducer;
 
 export const fetchServers = (): AppThunk => async (dispatch) => {
   try {
-    dispatch(setLoading());
+    dispatch(startLoading());
     const { data } = await getServers();
     dispatch(fetchSuccess(data));
   } catch ({ response: { data } }) {
-    dispatch(fetchFailed());
+    dispatch(stopLoading());
     dispatch(fireToast(data.message));
   }
 };

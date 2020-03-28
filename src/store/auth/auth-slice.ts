@@ -19,22 +19,18 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLoading(state: AuthState) {
+    startLoading(state: AuthState) {
       state.loading = true;
     },
-    loginSuccess(state: AuthState) {
-      state.loading = false;
-    },
-    loginFailed(state: AuthState) {
+    stopLoading(state: AuthState) {
       state.loading = false;
     },
   },
 });
 
 export const {
-  setLoading,
-  loginSuccess,
-  loginFailed,
+  startLoading,
+  stopLoading,
 } = authSlice.actions;
 
 export default authSlice.reducer;
@@ -43,13 +39,13 @@ export const login = (
   credentials: Credentials,
 ): AppThunk => async (dispatch) => {
   try {
-    dispatch(setLoading());
+    dispatch(startLoading());
     const { data: { token } } = await loginRequest(credentials);
-    dispatch(loginSuccess());
+    dispatch(stopLoading());
     storeToken(token);
     dispatch(push(paths.list));
   } catch ({ response: { data } }) {
-    dispatch(loginFailed());
+    dispatch(stopLoading());
     dispatch(fireToast(data.message));
   }
 };

@@ -6,7 +6,7 @@ To run the project in development mode with live reload:
 
 `npm start`
 
-To build a production bundle:
+To create a production bundle:
 
 `npm build`
 
@@ -18,7 +18,7 @@ To lint the project:
 
 `npm run lint`
 
-To verify TypeScript types:
+To check TypeScript types:
 
 `npm run types`
 
@@ -44,7 +44,6 @@ REST: Axios
 Tests: react-testing-library
 
 ## TODO
-* Custom Scrollbar
 * Add font to the bundle
 * Review
 * Improve Styled components theme to have proper Types 

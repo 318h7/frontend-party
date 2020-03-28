@@ -41,17 +41,11 @@ export const fireToast = (toastMessage: string): AppThunk => async (dispatch, ge
   if (message) {
     clearTimeout(timerId);
     dispatch(removeToast());
-
-    const timer = setTimeout(() => {
-      dispatch(removeToast());
-    }, TOAST_LIFETIME);
-
-    dispatch(addToast({ message: toastMessage, timerId: timer }));
-  } else {
-    const timer = setTimeout(() => {
-      dispatch(removeToast());
-    }, TOAST_LIFETIME);
-
-    dispatch(addToast({ message: toastMessage, timerId: timer }));
   }
+
+  const timer = setTimeout(() => {
+    dispatch(removeToast());
+  }, TOAST_LIFETIME);
+
+  dispatch(addToast({ message: toastMessage, timerId: timer }));
 };
