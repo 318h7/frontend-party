@@ -7,6 +7,9 @@ import Button from 'components/styled/button';
 import Preloader from 'components/preloader';
 import { login } from 'store/auth/auth-slice';
 import { AppState } from 'store/root-reducer';
+import selectors from 'constants/selectors';
+
+const { homePage } = selectors;
 
 const Form = styled.form`
   & > * {
@@ -70,6 +73,7 @@ const LoginForm = () => {
         value={username}
         disabled={loading}
         error={errors.username}
+        data-qa={homePage.userInput}
       />
       <PasswordInput
         name="password"
@@ -79,9 +83,14 @@ const LoginForm = () => {
         onChange={handlePasswordChange}
         disabled={loading}
         error={errors.password}
+        data-qa={homePage.passwordInput}
       />
       <div>
-        <Button onClick={handleSubmit} disabled={loading}>
+        <Button
+          onClick={handleSubmit}
+          disabled={loading}
+          data-qa={homePage.submit}
+        >
           Log In
           { loading && <Preloader />}
         </Button>

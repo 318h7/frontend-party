@@ -1,6 +1,10 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import selectors from 'constants/selectors';
+
+const { toast } = selectors;
+
 interface Props {
   message: string;
 }
@@ -30,7 +34,7 @@ const ToastStyled = styled.div`
 `;
 
 const Toast = ({ message }: Props) => (
-  <ToastStyled>{message}</ToastStyled>
+  <ToastStyled data-qa={toast.toast}>{message}</ToastStyled>
 );
 
 export default Toast;
