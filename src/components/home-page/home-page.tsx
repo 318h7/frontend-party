@@ -7,7 +7,7 @@ import LoginForm from './login-form';
 
 const Background = styled.div`
   background-color: #0b0f27;
-  background-image: url(/img/testio-bg.webp);
+  background-image: url(/img/testio-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -26,7 +26,7 @@ const Body = styled.div`
 `;
 
 const TestioLogo = styled.img`
-  content: url(/img/logo-testio-white.webp);
+  content: url(/img/logo-testio-white.png);
   padding-bottom: 80px;
 `;
 
