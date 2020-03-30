@@ -34,10 +34,16 @@ all app side effects. Helping to separate the presentation layer from other conc
 
 ## Stack Notes
 
-Bundler: Webpack,
-Transpiler: Babel,
+Bundler: Webpack
+
+Transpiler: Babel
+
 Styles: Styled Components
+
 State Management: Redux + Redux Toolkit
+
 Side Effects: Thunk + Connected React Router
+
 REST: Axios
+
 Tests: react-testing-library
