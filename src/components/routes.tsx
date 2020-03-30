@@ -11,7 +11,7 @@ import history from 'browserHistory';
 import paths from 'constants/paths';
 
 const Home = lazy(() => import('components/home-page'));
-const List = lazy(() => import('components/servers-list'));
+const Servers = lazy(() => import('components/servers-page'));
 
 const grow = keyframes`
   from {
@@ -33,7 +33,7 @@ const Routes = () => (
     <Suspense fallback={<Preloader />}>
       <Switch>
         <ProtectedRoute path={paths.list}>
-          <List />
+          <Servers />
         </ProtectedRoute>
         <Route path={paths.home}>
           <Home />

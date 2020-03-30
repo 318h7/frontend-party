@@ -1,6 +1,6 @@
 # Tesonet FrontEnd developer task
 
-## Basic instructions
+## Scripts
 
 To run the project in development mode with live reload:
 
@@ -32,7 +32,6 @@ Since using Redux was part of the task and using it just to store the list did
 not sound fun at all, I have decided to use thunk and connected router to handle
 all app side effects. Helping to separate the presentation layer from other concerns.
 
-
 ## Stack Notes
 
 Bundler: Webpack,
@@ -42,8 +41,3 @@ State Management: Redux + Redux Toolkit
 Side Effects: Thunk + Connected React Router
 REST: Axios
 Tests: react-testing-library
-
-## TODO
-* Add font to the bundle
-* Review
-* Improve Styled components theme to have proper Types 

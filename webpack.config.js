@@ -73,7 +73,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif,webp)$/,
         use: [
           'file-loader',
         ],
@@ -85,6 +85,7 @@ module.exports = {
     modules: [
       paths.src,
       'node_modules',
+      'test',
     ],
   },
   output: {

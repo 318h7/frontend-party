@@ -1,6 +1,10 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import selectors from 'constants/selectors';
+
+const { preloader } = selectors;
+
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -29,7 +33,7 @@ const Container = styled.div`
 
 const Spinner = () => (
   <Container>
-    <Icon />
+    <Icon data-qa={preloader.preloader} />
   </Container>
 );
 

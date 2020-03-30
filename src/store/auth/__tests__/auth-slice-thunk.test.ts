@@ -1,7 +1,7 @@
 import * as loginAPI from 'api/login';
 import * as toastSlice from 'store/toast/toast-slice';
 import { getToken, clearToken, storeToken } from 'utils/session-storage';
-import { mockAxiosResponse, mockAxiosError } from 'utils/test';
+import { mockAxiosResponse, mockAxiosError } from 'axios-utils';
 import { push } from 'connected-react-router';
 
 import paths from 'constants/paths';

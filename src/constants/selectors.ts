@@ -4,9 +4,15 @@ export default {
     passwordInput: 'password-input',
     submit: 'submit-button',
   },
-  serverPage: {
+  serversPage: {
     headerItem: 'header-item',
     headerIcon: 'header-icon',
+    listItem: 'list-item',
+    name: 'name',
+    distance: 'distance',
+  },
+  preloader: {
+    preloader: 'preloader',
   },
   toast: {
     toast: 'toast',

@@ -1,6 +1,6 @@
 import * as serversAPI from 'api/servers';
 import * as toastSlice from 'store/toast/toast-slice';
-import { mockAxiosResponse, mockAxiosError } from 'utils/test';
+import { mockAxiosResponse, mockAxiosError } from 'axios-utils';
 
 import {
   startLoading, fetchSuccess, stopLoading, fetchServers,

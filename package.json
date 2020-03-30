@@ -91,7 +91,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "start": "NODE_ENV='development' webpack-dev-server --open",
-    "test": "jest -c jest.config.js",
+    "test": "jest",
     "lint": "eslint . --ext .js --ext .ts --ext .tsx",
     "types": "tsc --noEmit",
     "analyze": "webpack --config webpack.config.analyze.js"

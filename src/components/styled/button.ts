@@ -20,7 +20,7 @@ const Button = styled.button`
   }
   &:hover {
     outline-color: rgba(0,0,0,0);
-    background-color: ${({ theme }) => theme.mainHover};
+    background-color: ${({ theme }) => theme.buttonHover};
   }
 
   &:disabled {
@@ -37,13 +37,13 @@ const Button = styled.button`
 export const OutlinedButton = styled(Button)`
   width: auto;
   background-color: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.whiteTextColor};
+  color: ${({ theme }) => theme.outlinedButtonTextColor};
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 0.35px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.whiteHover};
+    background-color: ${({ theme }) => theme.outlinedButtonHover};
   }
 `;
 

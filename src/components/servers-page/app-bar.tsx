@@ -14,7 +14,7 @@ const Bar = styled.div`
 `;
 
 const TestioLogo = styled.img`
-  content: url(/img/logo-testio-black.png);
+  content: url(/img/logo-testio-black.webp);
 `;
 
 const LogoutButton = styled(OutlinedButton)`
